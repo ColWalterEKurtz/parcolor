@@ -6,7 +6,7 @@
  * @brief      This file holds the program's showHelp(), showVersion()
  *             and main() function and doxygen's main page.
  * @author     Col. Walter E. Kurtz
- * @version    2018-07-07
+ * @version    2018-11-18
  * @copyright  GNU General Public License - Version 3.0
  *
  * @mainpage
@@ -77,7 +77,7 @@ void showHelp(const cli& cmdl)
  */
 void showVersion()
 {
-  cout << "2018-07-07" << endl;
+  cout << "2018-11-18" << endl;
 }
 
 // -----------
@@ -189,7 +189,7 @@ void openGroup(bool blank, const string& caption)
   // no background color
   if (blank)
   {
-    cout << "\\parbox{\\textwidth}" << endl;
+    cout << "\\parbox{\\linewidth}" << endl;
     cout << "{%" << endl;
   }
 
@@ -197,7 +197,7 @@ void openGroup(bool blank, const string& caption)
   else
   {
     cout << "\\definecolor{background}{rgb}{0.82,0.82,0.92}%" << endl;
-    cout << "\\dimen100=\\textwidth" << endl;
+    cout << "\\dimen100=\\linewidth" << endl;
     cout << "\\advance\\dimen100 by -2\\fboxsep" << endl;
     cout << "\\colorbox{background}" << endl;
     cout << "{%" << endl;
