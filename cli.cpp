@@ -5,7 +5,7 @@
  * @file
  * @brief      This file holds the implementation of the @ref cli class.
  * @author     Col. Walter E. Kurtz
- * @version    2018-07-06
+ * @version    2019-11-20
  * @copyright  GNU General Public License - Version 3.0
  */
 
@@ -84,10 +84,11 @@ bool cli::parse(int argc, char** argv)
    * x  show example
    * b  blank
    * d  document
-   * c  caption
+   * i  lines in the initial paragraph
+   * p  lines in each paragraph
    * s  syntactical character
    */
-  const char* optstring = ":hvxbdc:s:";
+  const char* optstring = ":hvxbdi:p:s:";
 
   // the ASCII code of the current option character
   int optchar;
@@ -141,10 +142,32 @@ bool cli::parse(int argc, char** argv)
         // next argument
         break;
 
-      case 'c':
+      case 'i':
 
-        // get entire option argument
-        caption = argstream.str();
+        // convert string to unsigned
+        if ( !(argstream >> maxLinesInitial) )
+        {
+          // notify user
+          msg::err( msg::cat("invalid number given: -", int2alnum(optopt)) );
+
+          // signalize trouble
+          return false;
+        }
+
+        // next argument
+        break;
+
+      case 'p':
+
+        // convert string to unsigned
+        if ( !(argstream >> maxLinesParagraph) )
+        {
+          // notify user
+          msg::err( msg::cat("invalid number given: -", int2alnum(optopt)) );
+
+          // signalize trouble
+          return false;
+        }
 
         // next argument
         break;
@@ -247,10 +270,11 @@ void cli::reset()
   m_argv0 = "";
 
   // flags
-  blank    = false;
-  document = false;
-  caption  = "";
-  synchar  = '!';
+  blank             = false;
+  document          = false;
+  synchar           = '!';
+  maxLinesInitial   = 0;
+  maxLinesParagraph = 0;
 }
 
 // ---------

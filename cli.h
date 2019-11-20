@@ -5,7 +5,7 @@
  * @file
  * @brief      This file holds the definition of the @ref cli class.
  * @author     Col. Walter E. Kurtz
- * @version    2018-07-06
+ * @version    2019-11-20
  * @copyright  GNU General Public License - Version 3.0
  */
 
@@ -49,10 +49,11 @@ public:
   operation;
 
   // flags
-  bool        blank;     ///< no background color
-  bool        document;  ///< full LaTeX document
-  std::string caption;   ///< show caption
-  char        synchar;   ///< syntactical character
+  bool        blank;             ///< no background color
+  bool        document;          ///< full LaTeX document
+  char        synchar;           ///< syntactical character
+  unsigned    maxLinesInitial;   ///< maximum number of lines in the first paragraph
+  unsigned    maxLinesParagraph; ///< maximum number of lines in each paragraph
 
   /// the list of positional parameters
   std::vector< std::string > pparams;
